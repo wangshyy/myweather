@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
@@ -53,7 +54,6 @@ public class ChooseAreaFragment extends Fragment {
     private Province selectedProvince;
     private City selectedCity;
     private int currentLevel;
-
 
     @Nullable
     @Override
@@ -92,11 +92,18 @@ public class ChooseAreaFragment extends Fragment {
                                 editor.putString("weather_id",weatherId);
                                 editor.putString("county_name",countyName);
                                 editor.apply();
-                                Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                                intent.putExtra("weather_id",weatherId);
-                                intent.putExtra("county_name",countyName);
-                                startActivity(intent);
-                                getActivity().finish();
+                                if(getActivity() instanceof MainActivity){
+                                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                                    intent.putExtra("weather_id",weatherId);
+                                    intent.putExtra("county_name",countyName);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }else if (getActivity() instanceof WeatherActivity){
+                                    WeatherActivity weatherActivity = (WeatherActivity) getActivity();
+                                    weatherActivity.drawerLayout.closeDrawers();
+                                    weatherActivity.requestWeather(weatherId,countyName);
+
+                                }
                             }
                         }
                     });

@@ -1,6 +1,8 @@
 package com.myweather.android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -37,6 +40,8 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView windScaleText;
     private TextView precipText;
     private TextView visText;
+    public DrawerLayout drawerLayout;
+    private Button navButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,12 @@ public class WeatherActivity extends AppCompatActivity {
         String cityName = getIntent().getStringExtra("county_name");
         weatherLayout.setVisibility(View.INVISIBLE);
         requestWeather(weatherId,cityName);
+        navButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
     }
     private void init(){
         weatherLayout = findViewById(R.id.weather_layout);
@@ -67,6 +78,8 @@ public class WeatherActivity extends AppCompatActivity {
         windScaleText = findViewById(R.id.wind_scale_text);
         precipText = findViewById(R.id.precip_text);
         visText = findViewById(R.id.vis_text);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navButton = findViewById(R.id.nav_button);
     }
 
     /**
@@ -135,10 +148,10 @@ public class WeatherActivity extends AppCompatActivity {
                     TextView infoText = view.findViewById(R.id.info_text);
                     TextView maxText = view.findViewById(R.id.max_text);
                     TextView minText = view.findViewById(R.id.min_text);
-                    dataText.setText(dailyBean.getFxDate());
+                    dataText.setText(dailyBean.getFxDate().substring(5,dailyBean.getFxDate().length()));
                     infoText.setText(dailyBean.getTextDay());
-                    maxText.setText(dailyBean.getTempMax()+"℃");
-                    minText.setText(dailyBean.getTempMin()+"℃");
+                    maxText.setText(dailyBean.getTempMax()+"°");
+                    minText.setText(dailyBean.getTempMin()+"°");
                     forecastLayout.addView(view);
                 }
             }
