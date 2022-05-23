@@ -1,7 +1,10 @@
 package com.myweather.android;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +85,18 @@ public class ChooseAreaFragment extends Fragment {
                             }else if(currentLevel==LEVEL_CITY){
                                 selectedCity = cityList.get(i);
                                 queryCounties();
+                            }else if (currentLevel==LEVEL_COUNTY){
+                                String weatherId = countyList.get(i).getWeatherId();
+                                String countyName = countyList.get(i).getCountyName();
+                                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                                editor.putString("weather_id",weatherId);
+                                editor.putString("county_name",countyName);
+                                editor.apply();
+                                Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                                intent.putExtra("weather_id",weatherId);
+                                intent.putExtra("county_name",countyName);
+                                startActivity(intent);
+                                getActivity().finish();
                             }
                         }
                     });
