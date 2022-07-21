@@ -117,7 +117,6 @@ public class WeatherActivity extends AppCompatActivity {
      * 处理展示天气信息
      */
     private void showWeatherInfo(WeatherNowBean weatherBean, String weatherId, String cityName) {
-        String updateTime = weatherBean.getBasic().getUpdateTime().substring(0, 10);
         String degree = weatherBean.getNow().getTemp() + "°";
         String weatherInfo = weatherBean.getNow().getText();
         String feelsLike = weatherBean.getNow().getFeelsLike() + "°";
@@ -138,7 +137,7 @@ public class WeatherActivity extends AppCompatActivity {
         forecastLayout.removeAllViews();
 
         /**
-         * 获取7天预报数据
+         * 获取3天预报数据
          */
         QWeather.getWeather3D(WeatherActivity.this, weatherId, Lang.ZH_HANS, Unit.METRIC, new QWeather.OnResultWeatherDailyListener() {
             @Override

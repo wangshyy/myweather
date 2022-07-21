@@ -17,15 +17,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.myweather.android.db.City;
-import com.myweather.android.db.County;
-import com.myweather.android.db.Province;
+import com.myweather.android.data.City;
+import com.myweather.android.data.County;
+import com.myweather.android.data.Province;
 import com.myweather.android.util.HttpUtil;
 import com.myweather.android.util.Utility;
 

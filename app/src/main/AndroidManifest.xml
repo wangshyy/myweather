@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyWeather">
         <activity
-            android:name=".ui.addcity.MainActivity2"
-            android:exported="false" />
-        <activity
             android:name=".ui.addcity.AddCityActivity"
             android:exported="false" />
         <activity

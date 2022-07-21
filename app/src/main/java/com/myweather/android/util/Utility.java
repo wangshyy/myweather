@@ -2,9 +2,9 @@ package com.myweather.android.util;
 
 import android.text.TextUtils;
 
-import com.myweather.android.db.City;
-import com.myweather.android.db.County;
-import com.myweather.android.db.Province;
+import com.myweather.android.data.City;
+import com.myweather.android.data.County;
+import com.myweather.android.data.Province;
 
 import org.json.JSONArray;
 import org.json.JSONException;

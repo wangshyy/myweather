@@ -4,23 +4,37 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.myweather.android.databinding.CityCardItemBinding
+import com.myweather.android.data.HistoryCity
+import com.myweather.android.data.HistoryWeatherInfo
 
-class RecyclerViewAdapter(): RecyclerView.Adapter<RecyclerViewAdapter.viewHolder>() {
-    class viewHolder(binding: CityCardItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class RecyclerViewAdapter(historyWeatherInfoList: MutableList<HistoryWeatherInfo>) :
+    RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+    private var historyWeatherInfoList: MutableList<HistoryWeatherInfo> = historyWeatherInfoList
+
+    class ViewHolder(binding: CityCardItemBinding) : RecyclerView.ViewHolder(binding.root) {
         var degreeText = binding.degreeText
         var cityName = binding.cityName
-    }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapter.viewHolder {
-        var binding = CityCardItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        var viewHolder = RecyclerViewAdapter.viewHolder(binding)
-        return viewHolder
+        var minText = binding.minText
+        var maxText = binding.maxText
     }
 
-    override fun onBindViewHolder(holder: RecyclerViewAdapter.viewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
+        var binding =
+            CityCardItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.cityName.text = historyWeatherInfoList[position].cityName
+        holder.degreeText.text = historyWeatherInfoList[position].degree
+        holder.maxText.text = historyWeatherInfoList[position].max
+        holder.minText.text = historyWeatherInfoList[position].min
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return historyWeatherInfoList.size
     }
 }

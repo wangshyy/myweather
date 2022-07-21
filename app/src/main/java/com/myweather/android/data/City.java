@@ -1,4 +1,4 @@
-package com.myweather.android.db;
+package com.myweather.android.data;
 
 import org.litepal.crud.LitePalSupport;
 
