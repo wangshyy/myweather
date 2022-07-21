@@ -113,6 +113,7 @@ class AddCityActivity : AppCompatActivity() {
         historyWeatherInfoList.clear()
         addCityViewModel.requestWeatherList(applicationContext,historyCityList).observe(this){
             historyWeatherInfoList.addAll(it)
+            recyclerViewAdapter.notifyDataSetChanged()
         }
     }
     //刷新历史搜索城市列

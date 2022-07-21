@@ -20,7 +20,6 @@ import com.qweather.sdk.view.QWeather.OnResultWeatherDailyListener
 import com.qweather.sdk.view.QWeather.OnResultWeatherNowListener
 import org.litepal.LitePal
 import org.litepal.extension.findAll
-import kotlin.math.log
 
 class AddCityViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
@@ -119,6 +118,7 @@ class AddCityViewModel : ViewModel() {
                     } else {
                         //在此查看返回数据失败的原因
                         val code = weatherNowBean.code
+                        Log.d("abc","$code")
                     }
                 }
             }
